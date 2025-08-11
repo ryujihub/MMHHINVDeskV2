@@ -98,9 +98,24 @@ export const Login = () => {
               variant="outlined"
               startIcon={<GoogleIcon />}
               onClick={handleGoogleSignIn}
+              sx={{ mb: 2 }}
             >
               Sign in with Google
             </Button>
+
+            <Box sx={{ mt: 2, textAlign: 'center' }}>
+              <Typography variant="body2">
+                Don't have an account?{' '}
+                <Button
+                  onClick={() => navigate('/signup')}
+                  color="primary"
+                  size="small"
+                  sx={{ ml: 1 }}
+                >
+                  Sign Up
+                </Button>
+              </Typography>
+            </Box>
           </Box>
         </Paper>
       </Box>

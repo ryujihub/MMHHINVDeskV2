@@ -7,6 +7,7 @@ import { Dashboard } from './components/dashboard/Dashboard';
 import { Layout } from './components/layout/Layout';
 import { Inventory } from './components/inventory/Inventory';
 import { Reports } from './components/reports/Reports';
+import { Settings } from './components/settings/Settings';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
   const { user } = useAuth();
@@ -49,6 +50,16 @@ function App() {
               <PrivateRoute>
                 <Layout>
                   <Reports />
+                </Layout>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <PrivateRoute>
+                <Layout>
+                  <Settings />
                 </Layout>
               </PrivateRoute>
             }

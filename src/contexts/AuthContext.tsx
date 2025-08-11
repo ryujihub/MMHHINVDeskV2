@@ -5,17 +5,22 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  signInWithPopup
+  signInWithPopup,
+  updateEmail as firebaseUpdateEmail,
+  updatePassword as firebaseUpdatePassword
 } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase/config';
 
 interface AuthContextType {
   user: User | null;
+  currentUser: User | null;
   loading: boolean;
   login: (email: string, password: string) => Promise<void>;
   signup: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   signInWithGoogle: () => Promise<void>;
+  updateEmail: (email: string) => Promise<void>;
+  updatePassword: (password: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -57,13 +62,26 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     await signInWithPopup(auth, googleProvider);
   };
 
+  const updateEmail = async (email: string) => {
+    if (!user) throw new Error('No user logged in');
+    await firebaseUpdateEmail(user, email);
+  };
+
+  const updatePassword = async (password: string) => {
+    if (!user) throw new Error('No user logged in');
+    await firebaseUpdatePassword(user, password);
+  };
+
   const value = {
     user,
+    currentUser: user,
     loading,
     login,
     signup,
     logout,
-    signInWithGoogle
+    signInWithGoogle,
+    updateEmail,
+    updatePassword
   };
 
   return (
