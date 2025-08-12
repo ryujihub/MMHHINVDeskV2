@@ -7,7 +7,6 @@ import { Dashboard } from './components/dashboard/Dashboard';
 import { Layout } from './components/layout/Layout';
 import { Inventory } from './components/inventory/Inventory';
 import { StockManagement } from './components/inventory/StockManagement';
-import { Reports } from './components/reports/Reports';
 import { Settings } from './components/settings/Settings';
 
 function PrivateRoute({ children }: { children: React.ReactNode }) {
@@ -51,16 +50,6 @@ function App() {
               <PrivateRoute>
                 <Layout>
                   <StockManagement />
-                </Layout>
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/reports"
-            element={
-              <PrivateRoute>
-                <Layout>
-                  <Reports />
                 </Layout>
               </PrivateRoute>
             }

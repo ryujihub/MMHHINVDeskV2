@@ -153,7 +153,7 @@ export const InventoryTable = () => {
               <TableCell>Name</TableCell>
               <TableCell>Category</TableCell>
               <TableCell align="right">Current Stock</TableCell>
-              <TableCell align="right">Min. Stock</TableCell>
+              <TableCell align="right">Min. Stock Level</TableCell>
               <TableCell align="right">Price</TableCell>
               <TableCell>Unit</TableCell>
               <TableCell>Actions</TableCell>

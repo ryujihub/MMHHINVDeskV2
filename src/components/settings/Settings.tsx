@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Paper,
@@ -15,6 +15,8 @@ import {
 import type { Theme } from '@mui/material/styles';
 import type { SxProps } from '@mui/system';
 import { useAuth } from '../../contexts/AuthContext';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from '../../firebase/config';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -106,8 +108,30 @@ export const Settings = () => {
     setLoading(false);
   };
 
-  const handleAppSettingsSave = () => {
-    // TODO: Implement app settings save functionality
+  // Load saved settings on mount
+  useEffect(() => {
+    const loadSettings = async () => {
+      if (!currentUser) return;
+      const docRef = doc(db, 'userSettings', currentUser.uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        setDarkMode(data.darkMode ?? false);
+        setEmailNotifications(data.emailNotifications ?? true);
+        setLowStockAlert(data.lowStockAlert ?? true);
+      }
+    };
+    loadSettings();
+  }, [currentUser]);
+
+  const handleAppSettingsSave = async () => {
+    if (!currentUser) return;
+    const docRef = doc(db, 'userSettings', currentUser.uid);
+    await setDoc(docRef, {
+      darkMode,
+      emailNotifications,
+      lowStockAlert,
+    });
     setSuccess('Settings saved successfully');
   };
 
@@ -118,7 +142,7 @@ export const Settings = () => {
           Settings
         </Typography>
         <Divider />
-        
+
         <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
           <Tabs value={activeTab} onChange={handleTabChange} aria-label="settings tabs">
             <Tab label="Profile" />
@@ -227,28 +251,7 @@ export const Settings = () => {
                 label="Dark Mode"
               />
             </Box>
-            <Box>
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={emailNotifications}
-                    onChange={(e) => setEmailNotifications(e.target.checked)}
-                  />
-                }
-                label="Email Notifications"
-              />
-            </Box>
-            <Box>
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={lowStockAlert}
-                    onChange={(e) => setLowStockAlert(e.target.checked)}
-                  />
-                }
-                label="Low Stock Alerts"
-              />
-            </Box>
+
             <Box>
               <Button
                 variant="contained"
