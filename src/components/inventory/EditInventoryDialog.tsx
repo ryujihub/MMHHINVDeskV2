@@ -109,12 +109,22 @@ export const EditInventoryDialog = ({ open, item, onClose, onSave }: EditInvento
               </FormControl>
             </Grid>
             <Grid size={{ xs: 12, sm: 6 }}>
-              <TextField
-                fullWidth
-                label="Location"
-                value={formData.location || ''}
-                onChange={(e) => handleChange('location', e.target.value)}
-              />
+              <FormControl fullWidth>
+                <InputLabel>Unit</InputLabel>
+                <Select
+                  value={formData.unit || ''}
+                  label="Unit"
+                  onChange={(e) => handleChange('unit', e.target.value)}
+                >
+                  <MenuItem value="pcs">Pieces</MenuItem>
+                  <MenuItem value="box">Box</MenuItem>
+                  <MenuItem value="set">Set</MenuItem>
+                  <MenuItem value="kg">Kilogram</MenuItem>
+                  <MenuItem value="m">Meter</MenuItem>
+                  <MenuItem value="L">Liter</MenuItem>
+                  <MenuItem value="roll">Roll</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
             <Grid size={{ xs: 12, sm: 6 }}>
               <TextField

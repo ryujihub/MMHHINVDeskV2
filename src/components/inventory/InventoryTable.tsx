@@ -155,7 +155,7 @@ export const InventoryTable = () => {
               <TableCell align="right">Current Stock</TableCell>
               <TableCell align="right">Min. Stock</TableCell>
               <TableCell align="right">Price</TableCell>
-              <TableCell>Location</TableCell>
+              <TableCell>Unit</TableCell>
               <TableCell>Actions</TableCell>
             </TableRow>
           </TableHead>
@@ -194,7 +194,7 @@ export const InventoryTable = () => {
                   </Box>
                 </TableCell>
                 <TableCell align="right">₱{item.price.toLocaleString()}</TableCell>
-                <TableCell>{item.location}</TableCell>
+                <TableCell>{item.unit}</TableCell>
                 <TableCell>
                   <Tooltip title="Edit">
                     <IconButton 

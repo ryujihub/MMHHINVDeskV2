@@ -34,6 +34,7 @@ export const Sidebar = () => {
   const menuItems = [
     { text: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard' },
     { text: 'Inventory', icon: <InventoryIcon />, path: '/inventory' },
+    { text: 'Stock In/Out', icon: <InventoryIcon />, path: '/stock-management' },
     { text: 'Reports', icon: <ReportsIcon />, path: '/reports' },
     { text: 'Settings', icon: <SettingsIcon />, path: '/settings' },
     { text: 'Profile', icon: <ProfileIcon />, path: '/profile' },

@@ -6,6 +6,7 @@ import { SignUp } from './components/auth/SignUp';
 import { Dashboard } from './components/dashboard/Dashboard';
 import { Layout } from './components/layout/Layout';
 import { Inventory } from './components/inventory/Inventory';
+import { StockManagement } from './components/inventory/StockManagement';
 import { Reports } from './components/reports/Reports';
 import { Settings } from './components/settings/Settings';
 
@@ -45,6 +46,16 @@ function App() {
             }
           />
           <Route
+            path="/stock-management"
+            element={
+              <PrivateRoute>
+                <Layout>
+                  <StockManagement />
+                </Layout>
+              </PrivateRoute>
+            }
+          />
+          <Route
             path="/reports"
             element={
               <PrivateRoute>
@@ -56,6 +67,16 @@ function App() {
           />
           <Route
             path="/settings"
+            element={
+              <PrivateRoute>
+                <Layout>
+                  <Settings />
+                </Layout>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/profile"
             element={
               <PrivateRoute>
                 <Layout>

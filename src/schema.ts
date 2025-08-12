@@ -12,7 +12,7 @@ export interface InventoryItem {
   price: number;
   costPrice: number;
   supplier: string;
-  location: string;
+  unit: string;
   lastUpdated: Timestamp;
   createdAt: Timestamp;
 }
